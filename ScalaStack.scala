@@ -16,3 +16,4 @@ class Stack(v:Int){
   def pop = if(sp!=v) {sp = sp + 1; stk(sp-1)} else {println("underflow"); -1}          
   def ! = { println("Printing Stack"); for( i <- sp to stk.length-1) println(stk(i)) ; this }
 }
+copyright © Rajesh Patkar, All rights reserved
