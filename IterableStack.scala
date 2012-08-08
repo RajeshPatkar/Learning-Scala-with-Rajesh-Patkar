@@ -20,24 +20,18 @@ class Stack extends Iterable[Int]{
                        foreach(println)
                        this;
   }
-  override def iterator():Iterator[Int] = new SIterator();
-  class SIterator extends Iterator[Int]{
-                   var data = List[Int]();
-                   var temp = h;
-                   while(temp != null){
-                     data = temp.value::data;
-                     temp=temp.next;
-                   }
-                 override def hasNext():Boolean = 
-                          !data.isEmpty;
-                 override def next():Int= {
-                         var v = data.head
-                         data = data.tail
-                         v
+  override def iterator():Iterator[Int] = (
+          ()=>{
+                 var data = List[Int]()
+                 var temp = h;
+                 while(temp != null){
+                    data = temp.value::data
+                    temp=temp.next
                  }
-                   
+                 data
+               })().iterator;  
   }
-}
+
 
 object Program {
     def main(args: Array[String]): Unit = {
