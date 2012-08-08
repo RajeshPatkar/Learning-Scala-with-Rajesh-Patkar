@@ -34,3 +34,5 @@ object Program {
     println("x= "+x+" y= "+y);
   }
 }
+
+copyright ©  Rajesh Patkar, All rights reserved
