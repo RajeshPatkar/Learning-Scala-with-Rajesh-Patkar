@@ -20,16 +20,15 @@ class Stack extends Iterable[Int]{
                        foreach(println)
                        this;
   }
-  override def iterator():Iterator[Int] = (
-          ()=>{
+  override def iterator():Iterator[Int] = {
                  var data = List[Int]()
                  var temp = h;
                  while(temp != null){
                     data = temp.value::data
                     temp=temp.next
                  }
-                 data
-               })().iterator;  
+                 data.iterator
+               } 
   }
 
 
