@@ -28,8 +28,8 @@ class Stack extends Iterable[Int]{
                     temp=temp.next
                  }
                  data.iterator
-               } 
-  }
+  } 
+}
 
 
 object Program {
