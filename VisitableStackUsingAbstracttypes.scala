@@ -1,11 +1,13 @@
 package com.rajeshpatkar
 
-object VNewVisitor {
+object Program {
   def main(args: Array[String]): Unit = {
     val p1 = Point2D(1,2)
     val p2 = Point3D(5,6,7)
     val p3 = PointPolar(1,34)
-    ( Stack[Point] < p1 < p2 < p3 ~ ).visit(_*3).visit(_*5).visit(_-2) 
+    val s1 = new PStack();
+    s1 < p1 < p2 < p3 ~ ;
+    s1.visit(_*3).visit(_*5).visit(_-2);
   }
 
 }
@@ -21,19 +23,19 @@ trait Visitable[T] extends Iterable[T]{
  def pattern(P:T,p:G);
 }
 
-trait PointVisitor[T] extends Visitable[T]
+trait PointVisitor extends Visitable[Point]
 {
   type G = (Int)=>(Int)
-  def pattern(P:T,p:G) = P match {
+  def pattern(P:Point,p:G) = P match {
                   case Point2D(x,y) => println("x = "+ p(x)+ " y = " + p(y))
                   case Point3D(x,y,z) => println("x = "+ p(x) +" y = "+ p(y) +" z = "+ p(z))
                   case PointPolar(r,theta) => println("r = " + p(r) + " theta = "+ p(theta))
                   case _ => println("Match not found")
   }
-  override def visit(p:G):PointVisitor[T] = {super.visit(p);this}
+  override def visit(p:G):PointVisitor = {super.visit(p);this}
 }
 
-case class Stack[T] extends PointVisitor[T]{
+abstract class Stack[T] extends Visitable[T]{
   
   class Node (val value : T , val next : Node);
   var h : Node = null;
@@ -64,3 +66,5 @@ case class Stack[T] extends PointVisitor[T]{
                               data.iterator
   }                                             
  }
+
+case class PStack extends Stack[Point] with PointVisitor
