@@ -14,11 +14,11 @@ case class Point2D(val x:Int , val y:Int) extends Point
 case class Point3D(val x:Int,val y:Int,val z:Int) extends Point
 case class PointPolar(val r:Int ,val theta:Int) extends Point
 
-trait Visitor[T]{
+trait Visitable[T]{
   def visit(p:(Int)=>Int):T
 }
 
-case class Stack[T] extends Iterable[T] with Visitor[Stack[T]]{
+case class Stack[T] extends Iterable[T] with Visitable[Stack[T]]{
   class Node (val value : T , val next : Node);
   var h : Node = null;
   def < ( value : T ) :Stack[T]= { h = new Node(value,h); this }
